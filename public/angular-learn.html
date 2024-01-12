@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   <script>
+    var module=angular.module("myModule",[]);
+    module.controller("myController",function($scope){
+        $scope.name="diya";
+
+        $scope.doClick=function(){
+            var msg="hello "+$scope.name;
+            alert(msg);
+        }
+        
+        $scope.join=function(){
+            $scope.full=$scope.fname+"  "+$scope.lname;
+        }
+    })
+   </script>
+    <title>Document</title>
+</head>
+<body ng-app="myModule" ng-controller="myController">
+    {{name}}
+    <p>
+        <input type="text" ng-model="name">
+    </p>
+    <p>
+        <input type="button" name="" id="" value="click" ng-click="doClick();">
+    </p>
+    <p>
+        f. name=
+        <input type="text" ng-model="fname">
+    </p>
+    <p>
+        l. name=
+        <input type="text" ng-model="lname">
+    </p>
+    <p>
+        <input type="button" value="join" ng-click="join();">
+    </p>
+    <p>
+        full name=
+        <input type="text" name="" id="" ng-model="full">
+    </p>
+   
+</body>
+</html>

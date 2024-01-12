@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Shark Tank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="index1.css">
+    <script src="JS/jquery-1.8.2.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#signup").click(function () {
+
+                var eval = $("#s_email").val();
+                var pval = $("#s_pwd").val();
+                var typeval = $("#type").val();
+
+                var url = "/ajax_signup? email=" + eval + "&pwd=" + pval + "&type=" + typeval;
+
+                $.get(url, function (resp) {    //callback function...
+                    alert(resp);
+                })
+            });
+
+            $("#login").click(function () {
+                var eval = $("#l_email").val();
+                var pval = $("#l_pwd").val();
+                var url = "/JSON_login?email=" + eval + "&pwd=" + pval;
+                $.getJSON(url, function (json_resp) {
+                    if (json_resp.length == 1) {
+                        localStorage.setItem("activeUser",eval);  // email will be filed automaticlly in next pge...
+                        if (json_resp[0].type == "investor") {
+                            alert(json_resp[0].type);
+                            location.href = "investor_dashboard.html";
+                        }
+                        else {
+                            location.href = "pitcher_dashboard.html";
+                        }
+                    }
+                    else
+                        alert("wrong email or password...");
+                })
+            })
+        })
+    </script>
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #shrk-icon {
+            border-radius: 50%;
+            float: left;
+            margin-right: 50px;
+        }
+
+        #title {
+            color: white;
+        }
+
+        li:hover {
+            background-color: rgb(83, 82, 82);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <div id="title" class="col-md-8">
+                <img src="imgs/icon-shark.jpg" id="shrk-icon" alt="" height="50px" width="50px">
+                <h1 style="float: left;">The Shark Tank</h1>
+            </div>
+            <div style="margin-left: 0px" class="col-md-2">
+                <button type="button" class="btn btn-outline-light col-md-6" style=" margin-right: 0px;"
+                    data-bs-toggle="modal" data-bs-target="#signupModal">
+                    Signup
+                </button>
+                <button type="button" class="btn btn-outline-light col-md-5" data-bs-toggle="modal"
+                    data-bs-target="#loginModal" style="margin-left: 5px;">
+                    Login
+                </button>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">The Shark Tank</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#paralax-1">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#services">Our Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#dev-1">Meet the Developers</a>
+                        </li>
+                        <li class="nav-item " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="#footer" class="nav-link active">
+                                Contact Us
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="paralax-1" class="col-md-12" style="padding-top:70px;">
+        <h1 style="font-size:70px ; margin: 20px; color:navy;font-family: big john;">Chasing your </h1>
+        <h1 style="font-size:70px ; margin:20px ; color: navy; font-family: big john;">Dreams..!!??</h1>
+        <p style="font-size:40px ; margin:20px ; font-family: big john;">
+            Get funding, support and <br> guidance from <br> Bussiness Sharks..!!
+        </p>
+    </div>
+    <div id="services" class="col-md-12">
+        Our Services
+    </div>
+    <div id="paralax-2" class="col-md-12" style="padding-top: 30px; margin-bottom: 30px;">
+        <div class="col-md-3" style="float: left; margin-left: 120px;">
+            <div class="card">
+                <img src="imgs/parallax3.jpg" class="card-img-top" alt="..." height="210px" width="150px">
+                <div class="card-body">
+                    <h5 class="card-title">Pathway to Your Dreams</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="float: left;margin-left: 40px;">
+            <div class="card">
+                <img src="imgs/find idea.jpeg" class="card-img-top" alt="..." height="210px" width="150px">
+                <div class="card-body">
+                    <h5 class="card-title">Find Startups To Invest In</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="float: left;margin-left: 40px;">
+            <div class="card">
+                <img src="imgs/shrk.jpeg" class="card-img-top" alt="..." height="210px" width="150px">
+                <div class="card-body">
+                    <h5 class="card-title">Find Investor</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="paralax-3" class="col-md-12">
+    </div>
+
+    <div id="services" class="col-md-12">
+        Meet the Developers
+    </div>
+    <div style="margin-top: 50px; display: flex; flex-direction: row;">
+        <div class="col-md-2"></div>
+        <div id="dev-1" class="col-md-4" style="display: flex;">
+            <div id="img" class="col-md-2">
+                <img src="imgs/download.jpg" alt="" height="150px">
+            </div>
+            <div id="txt" class="col-md-2">
+                <h5 style="color:red;">Developed By:</h5>
+                <h3>Diya Bansal</h3>
+            </div>
+        </div>
+        <div class="col-md-1"> </div>
+        <div id="dev-2" class="col-md-4" style="display: flex;">
+            <div id="img" class="col-md-2">
+                <img src="imgs/download.jpg" alt="" height="150px">
+            </div>
+            <div id="txt" class="col-md-2">
+                <h5 style="color: red;">Under Guidance of:</h5>
+                <h3>Rajesh K. Bansal</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer" class="col-md-12">
+        <div id="site-name" class="col-md-4">
+            <img id="end" src="imgs/icon-shark.jpg" alt="" height="150px" width="150px">
+            <h2 style="margin-top: 30px; font-size: 50px;">The Shark Tank</h2>
+            <br><br><br>
+            <p style="margin-left: 10px; color: grey;">
+                Pioneering ideas and investments.... <br>A chance to fulfill your dreams.
+                <br> <p style="font-size: 10px; color:grey"><i class="fa-light fa-copyright"></i>2022 reserved</p>
+            </p>
+        </div>
+        <div class="col-md-8" style="display: flex;">
+            <div class="col-md-3" style="float: left; text-align: center; margin-top: 50px;">
+                <i class="fa-brands fa-facebook"></i> &nbsp; &nbsp;
+                <i class="fa-brands fa-facebook-messenger"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-instagram"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-twitter"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-linkedin"></i>&nbsp; &nbsp;
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <div style="display: flex; flex-direction: row; color: grey;">
+                
+                <div id="policy" class="col-md-5">
+                    <p style="font-size: 20px; margin-top: 300px;"> Terms And Policies</p>
+                    <p> Website terms <br> Privacy Policy <br> Cookie policy </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div id="policy" class="col-md-4">
+                    <p style="font-size: 20px; margin-top: 300px;"> Contact Us</p>
+                    <p> <i class="fa-solid fa-envelope"></i> &nbsp; diya@gmail.com <br> <i class="fa-solid fa-phone"></i> &nbsp; 7973430962  <br> <i class="fa-solid fa-location-dot"></i> &nbsp; #202, sector-9, Noida </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div id="policy" class="col-md-4">
+                    <p style="font-size: 20px; margin-top: 300px;"> Follow Us on </p>
+                    <p> Instagram <br> Facebook <br> Linked in </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="s_email" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="s_pwd" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating">
+                        <select class="form-select form-control" id="type">
+                            <option>Open this select menu</option>
+                            <option value="pitcher">Pitcher</option>
+                            <option value="investor">Investor</option>
+
+                        </select>
+                        <label for="floatingSelect">Works with selects</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <input type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="signup"
+                            value="Signup">
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="l_email" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="l_pwd" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="login"
+                        value="Login">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

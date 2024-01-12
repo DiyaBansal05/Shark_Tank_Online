@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pitcher Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+    <script src="JS/jquery-1.8.2.min.js"></script>
+    <style>
+         #shrk-icon{
+            border-radius: 50%;
+            float: left;
+            margin-right: 50px;
+        }
+        #title
+        {
+            color: white;
+        }
+        li:hover{
+            background-color: rgb(83, 82, 82);
+        }
+    </style>
+    <script>
+        // for pic preview......
+        function preview(pic,event)
+        {
+            pic.src=URL.createObjectURL(event.target.files[0]);
+        }
+
+       $(document).ready(function(){
+        $("#find").click(function()
+        {    
+            var eval=$("#emaill").val();
+            var url="/fetch_pitcher_profile?email="+eval;
+            $.getJSON(url,function(jsonAry){
+               alert(JSON.stringify(jsonAry));
+                if(jsonAry.length==0)
+                 alert("No records found..");
+                $("#name").val(jsonAry[0].name);
+                $("#contact").val(jsonAry[0].contact);
+                $("#address").val(jsonAry[0].address);
+                $("#city").val(jsonAry[0].city);
+                $("#company").val(jsonAry[0].company);
+                $("#site").val(jsonAry[0].site);
+                $("#previd").prop("src","uploads/"+jsonAry[0].idpic);
+                $("#prevpp").prop("src","uploads/"+jsonAry[0].profile_pic);
+                $("#info").val(jsonAry[0].info);
+            })
+        });
+        // to autofill email...
+        $("#emaill").val(localStorage.getItem("activeUser"));
+       });
+    </script>
+</head>
+
+<body class="container">
+    <div style="height: 70px;">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+               <div id="title">
+                <img src="imgs/icon-shark.jpg" id="shrk-icon" alt="" height="50px" width="50px">
+                <h1 style="float: left;">The Shark Tank</h1>
+               </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Pitcher Dashboard</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="pitcher_profile.html">Create Your Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="pitcher-idea.html">Pitch Your Idea</a>
+                            </li>
+                            <li class="nav-item " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <a href="#" class="nav-link active">
+                                Go To Settings
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Logout</a>
+                            </li>
+    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+            <!-- Modal-settings -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                    <label for="pwd">Current Password</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="newpwd" placeholder="Password">
+                    <label for="newpwd">New Password</label>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <input type="button" class="btn btn-primary" value="Update" id="update_password">
+            </div>
+          </div>
+        </div>
+      </div>
+       </div>
+
+    <div class="container-fluid" style="height: 70px; margin-top: 10px;">
+            <h1>
+                <center>🅲🆁🅴🅰🆃🅴 🅿🆁🅾🅵🅸🅻🅴</center>
+            </h1>
+       
+    </div>
+                                             <!--to save img                to get data security -->
+    <form class="row g-3 border border-dark" enctype="multipart/form-data" method="post">
+        <div class="col-md-6">
+            <label for="emaill" class="form-label">Email</label>
+            <input type="email" class="form-control" readonly id="emaill" name="email">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <button type="button" id="find" class="btn btn-danger mt-4">Find</button>
+        </div>
+        <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="col-md-6">
+            <label for="contact" class="form-label">Contact Number</label>
+            <input type="text" class="form-control" id="contact" name="contact">
+        </div>
+        <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address">
+        </div>
+        <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" name="city">
+        </div>
+        <div class="col-md-6">
+            <label for="company" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company" name="company">
+        </div>
+        <div class="col-12">
+            <label for="site" class="form-label">Company Website</label>
+            <input type="text" class="form-control" id="site" name="site">
+        </div>
+        <div class="col-md-8">
+            <label for="idpic" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="idpic" name="idpic" onchange="preview(previd,event)">
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="" width="100" height="100" alt="" id="previd">
+        </div>
+        <div class="col-md-8">
+            <label for="profilepic" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="profilepic" name="profilepic" onchange="preview(prevpp,event)">
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="" width="100" height="100" alt="" id="prevpp">
+        </div>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Other Information About Yourself..." id="info" name="info"></textarea>
+            <label for="info">Comments</label>
+          </div>
+        <div class="mb-2 col-md-6 d-grid gap-2 mx-auto">
+          
+                <button type="submit" id="signup_pitcher" class="btn btn-danger ml-5" formaction="/signup_pitcher_profile">Sign in</button>
+                <button type="submit" id="update_pitcher" class="btn btn-danger ml-2" formaction="/update_pitcher_profile">Update</button>
+            
+            
+        </div>
+        
+    </form>
+</body>
+
+</html>

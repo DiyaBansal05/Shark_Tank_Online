@@ -1,0 +1,74 @@
+#paralax-1{
+    height: 550px;
+    margin: 0;
+    background-color: maroon;
+    background-image: url(imgs/parallax2\ copy.jpg);
+    background-size:cover;
+   
+}
+#paralax-2{
+   
+    height: 400px;
+}
+#paralax-3{
+    background-image: url(imgs/parallax1.png);
+    height: 600px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgba(215, 212, 212, 0.843);
+}   
+#services{
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    background-color: slategrey;
+    color: rgb(174, 219, 241);
+    margin-top: 2px;
+    border: 2px solid black;
+}
+#text-1{
+    background-attachment: fixed;
+    height: 100px;
+    margin-top: 5px;
+}
+#dev-1{
+    display: flex;
+    height: 200px;
+    border-right: 2px black solid;
+   
+}
+#img{
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    
+}
+#txt{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+#dev-2{
+    display: flex;
+    height: 250px;
+   
+}
+#footer{
+    height: 43 0px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
+#site-name{
+    margin-left: 20px;
+    margin-top: 0px;
+    padding-top: 20px;
+    border-right: 2px rgb(62, 61, 61) solid;
+}
+#end{
+    border-radius: 40%;
+}
+#policy{
+    margin-left: 0px;
+}

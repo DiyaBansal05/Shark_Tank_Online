@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pitcher Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="index1.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <style>
+       
+        #shrk-icon{
+            border-radius: 50%;
+            float: left;
+            margin-right: 50px;
+        }
+        #title
+        {
+            color: white;
+        }
+        li:hover{
+            background-color: rgb(83, 82, 82);
+        }
+        #baseimg{
+            height: 700px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url(imgs/finding_soln.jpg);
+           
+        }
+        #text{
+            font-size: 50px;
+            color: crimson;
+        }
+        #sidepic{
+            background-image: url(imgs/finding_soln.jpg);
+            height: 300px;
+            border-right: solid 1px black;
+            background-repeat: no-repeat;
+            
+            background-size: contain;
+        }
+        #sidetxt{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 40px;
+        }
+    </style>
+    <script>
+    $(document).ready(function () {
+        $("#update_password").click(function(){
+            
+            var eval = $("#email").val();
+            var pval = $("#pwd").val();
+            var newval = $("#newpwd").val();
+            var url = "/upadte-pitcher-pwd?email=" + eval + "&pwd=" + pval + "&newpwd=" + newval;
+            $.get(url, function (resp) {    //callback function...
+                alert(resp);
+            })
+        });
+
+        $("#active").html(localStorage.getItem("activeUser"));
+    });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+           <div id="title">
+            <img src="imgs/icon-shark.jpg" id="shrk-icon" alt="" height="50px" width="50px">
+            <h1 style="float: left;">The Shark Tank</h1>
+           </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Pitcher Dashboard</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="pitcher_profile.html">Create Your Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="pitcher-idea.html">Pitch Your Idea</a>
+                        </li>
+                        <li class="nav-item " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="#" class="nav-link active">
+                            Go To Settings
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-md-12" style="font-size: 40px; text-align: center;">
+            ℙ𝕚𝕥𝕔𝕙𝕖𝕣 𝔻𝕒𝕤𝕙𝕓𝕠𝕒𝕣𝕕
+        </div>
+    </div>
+    
+    <div class="col-md-12" style="height: 40px; margin-top: 5px; text-align: center; background-color:black; color: white;" >
+        <h2>
+            Welcome, <span id="active">*</span>
+        </h2>
+    </div>
+    <div class="row" id="baseimg">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 mt-5" id="text">
+            𝙋𝙞𝙩𝙘𝙝, 𝙄𝙢𝙥𝙧𝙚𝙨𝙨, 𝙂𝙖𝙞𝙣...!!
+            <br>
+            <p class="mt-2" style="font-size: 20px; color:black">
+            Seeking Entrepreneurs With Latest & Growing Business Ideas.  
+            </p>
+            <p  style="font-size: 20px; color:navy">
+                Looking for someone who can take your business to skyheights..?? <br>
+                Create your profile now and increase your reach.. <br>
+                <a href="pitcher_profile.html">
+                <button class="btn btn-outline-danger mt-2">Create Your profile</button>
+                </a>
+            </p>
+        </div>
+    </div>
+    
+    
+
+    <div id="footer" class="col-md-12">
+        <div id="site-name" class="col-md-4">
+            <img id="end" src="imgs/icon-shark.jpg" alt="" height="150px" width="150px">
+            <h2 style="margin-top: 30px; font-size: 50px;">The Shark Tank</h2>
+            <br><br><br>
+            <p style="margin-left: 10px; color: grey;">
+                Pioneering ideas and investments.... <br>A chance to fulfill your dreams.
+                <br> <p style="font-size: 10px; color:grey"><i class="fa-light fa-copyright"></i>2022 reserved</p>
+            </p>
+        </div>
+        <div class="col-md-8" style="display: flex;">
+            <div class="col-md-3" style="float: left; text-align: center; margin-top: 50px;">
+                <i class="fa-brands fa-facebook"></i> &nbsp; &nbsp;
+                <i class="fa-brands fa-facebook-messenger"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-instagram"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-twitter"></i>&nbsp; &nbsp;
+                <i class="fa-brands fa-linkedin"></i>&nbsp; &nbsp;
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <div style="display: flex; flex-direction: row; color: grey;">
+                
+                <div id="policy" class="col-md-5">
+                    <p style="font-size: 20px; margin-top: 300px;"> Terms And Policies</p>
+                    <p> Website terms <br> Privacy Policy <br> Cookie policy </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div id="policy" class="col-md-4">
+                    <p style="font-size: 20px; margin-top: 300px;"> Contact Us</p>
+                    <p> <i class="fa-solid fa-envelope"></i> &nbsp; diya@gmail.com <br> <i class="fa-solid fa-phone"></i> &nbsp; 7973430962  <br> <i class="fa-solid fa-location-dot"></i> &nbsp; #202, sector-9, Noida </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div id="policy" class="col-md-4">
+                    <p style="font-size: 20px; margin-top: 300px;"> Follow Us on </p>
+                    <p> Instagram <br> Facebook <br> Linked in </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+        <!-- Modal-settings -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                <label for="email">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                <label for="pwd">Current Password</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="newpwd" placeholder="Password">
+                <label for="newpwd">New Password</label>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="button" class="btn btn-primary" value="Update" id="update_password">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
